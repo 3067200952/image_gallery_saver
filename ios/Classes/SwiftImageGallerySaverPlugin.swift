@@ -13,7 +13,8 @@ public class SwiftImageGallerySaverPlugin: NSObject, FlutterPlugin {
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
       self.result = result
       if call.method == "saveImageToGallery" {
-          if let arguments = ((call.arguments as? NSDictionary)["imageBytes"] as? FlutterStandardTypedData)?.data, let image = UIImage(data: arguments) {
+          let bytes = ((call.arguments as! NSDictionary)["imageBytes"] as? FlutterStandardTypedData)!
+          if let image = UIImage(data: bytes.data) {
               UIImageWriteToSavedPhotosAlbum(image, self, #selector(didFinishSaving(image:error:contextInfo:)), nil)
           }
       } else {

@@ -15,7 +15,9 @@ class ImageGallerySaver {
     String fileName,
     String path,
   }) async {
-    assert(imageBytes != null);
+    if(imageBytes == null){
+      return false;
+    }
     final result = await _channel.invokeMethod('saveImageToGallery', {
       'imageBytes': imageBytes,
       'fileName': fileName,

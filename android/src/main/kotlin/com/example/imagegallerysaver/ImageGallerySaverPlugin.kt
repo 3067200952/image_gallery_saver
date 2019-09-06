@@ -59,7 +59,7 @@ class ImageGallerySaverPlugin(private val registrar: Registrar): MethodCallHandl
     val file = File(appDir, fileName)
     try {
       val fos = FileOutputStream(file)
-      val isSuccess = bmp.compress(Bitmap.CompressFormat.PNG, 60, fos)
+      val isSuccess = bmp.compress(Bitmap.CompressFormat.PNG, 100, fos)
       fos.flush()
       fos.close()
       val uri = Uri.fromFile(file)
